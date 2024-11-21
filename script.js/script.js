@@ -39,7 +39,7 @@ const  getWeather = async (cityValue) =>{
     if(cityValue == ""){
         msg.innerText = "Enter a city!"
     }else{
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&lang=pt-br`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&lang=pt-br&units=metric`
         const res = await fetch (url).then( (response)=>{
             if(!response.ok){
                 throw Error(response.statusText)
@@ -72,12 +72,12 @@ function insertValues(data, cityValue){
     const weather = data.weather
     const main = data.main
     const windData = data.wind
-
+   
     city.innerText = cityValue
     date.innerText = currentData()
     humidity.innerText = `${main.humidity}%`
     wind.innerText = `${windData.speed}km/h`
-    temperature.innerText = `${parseInt(main.temp - 273,15)}°`
+    temperature.innerText = `${parseInt(main.temp)}°`
     containerSearch.classList.add('hide')
     climate.innerText = weather[0].main
 
